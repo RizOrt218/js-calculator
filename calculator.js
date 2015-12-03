@@ -13,15 +13,12 @@ function calculatorModule(number){
   var memory = 0;
   var total = 0;
 
-  function isaNum(x){
-    if( typeof x === 'number' ){
-      var remainder  = ( data % 1 );
-      if ( remainder === 0 ) {
-        return true;
-    } else {
-        return ("it's not an integer");
-    }
-    }
+  function isaNum(num){
+   if(Number.isInteger(num)){
+    return true;
+   }else{
+    throw(new Error('not an integer'));
+   }
  }
 
   /**
@@ -32,14 +29,14 @@ function calculatorModule(number){
    module.load = function(x){
     if (isaNum(x)){
       total = x;
-    }
       return total;
+    }
   };
   /**
    * Return the value of `total`
    * @return { Number }
    */
-  }
+
     module.getTotal = function(){
       return total;
     };
@@ -49,8 +46,9 @@ function calculatorModule(number){
    */
     module.add = function(x){
       if (isaNum(x)){
-      total = total + x;
-     }
+        total = total + x;
+        return total;
+       }
     };
 
   /**
@@ -58,7 +56,9 @@ function calculatorModule(number){
    * @param  { Number } x
    */
     module.subtract = function(x){
-      total = total - x;
+      if ( isaNum(x)){
+        total = total - x;
+      }
     };
 
   /**
@@ -66,7 +66,9 @@ function calculatorModule(number){
    * @param  { Number } x
    */
     module.multiply = function(x){
-      total = total * x;
+      if ( isaNum(x)){
+        total = total * x;
+      }
     };
 
   /**
@@ -74,7 +76,9 @@ function calculatorModule(number){
    * @param  { Number } x
    */
    module.divide = function(x){
-    total = total/ x;
+    if ( isaNum(x)){
+      total = total/ x;
+    }
    };
 
   /**
